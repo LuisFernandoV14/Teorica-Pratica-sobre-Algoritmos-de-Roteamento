@@ -1,0 +1,85 @@
+=== TOPOLOGIA E CUSTOS INICIAIS (enlaces) ===
+  A <-> B : custo 4
+  A <-> C : custo 2
+  B <-> C : custo 1
+  B <-> D : custo 5
+  C <-> D : custo 8
+  C <-> E : custo 10
+  D <-> E : custo 2
+ 
+Enlaces por roteador:
+  A: B(4), C(2)
+  B: A(4), C(1), D(5)
+  C: A(2), B(1), D(8), E(10)
+  D: B(5), C(8), E(2)
+  E: C(10), D(2)
+ 
+--- Tabelas INICIAIS (rodada 0) ---
+Roteador |       A |       B |       C |       D |       E
+   A     |       0 |     4/B |     2/C |     inf |     inf
+   B     |     4/A |       0 |     1/C |     5/D |     inf
+   C     |     2/A |     1/B |       0 |     8/D |    10/E
+   D     |     inf |     5/B |     8/C |       0 |     2/E
+   E     |     inf |     inf |    10/C |     2/D |       0
+(formato: custo/próximo salto)
+ 
+--- Após rodada 1 ---
+Roteador |       A |       B |       C |       D |       E
+   A     |       0 |     3/C |     2/C |     9/B |    12/C
+   B     |     3/C |       0 |     1/C |     5/D |     7/D
+   C     |     2/A |     1/B |       0 |     6/B |    10/E
+   D     |     9/B |     5/B |     6/B |       0 |     2/E
+   E     |    12/C |     7/D |    10/C |     2/D |       0
+(formato: custo/próximo salto)
+ 
+--- Após rodada 2 ---
+Roteador |       A |       B |       C |       D |       E
+   A     |       0 |     3/C |     2/C |     8/C |    11/B
+   B     |     3/C |       0 |     1/C |     5/D |     7/D
+   C     |     2/A |     1/B |       0 |     6/B |     8/B
+   D     |     8/B |     5/B |     6/B |       0 |     2/E
+   E     |    11/D |     7/D |     8/D |     2/D |       0
+(formato: custo/próximo salto)
+ 
+--- Após rodada 3 ---
+Roteador |       A |       B |       C |       D |       E
+   A     |       0 |     3/C |     2/C |     8/C |    10/C
+   B     |     3/C |       0 |     1/C |     5/D |     7/D
+   C     |     2/A |     1/B |       0 |     6/B |     8/B
+   D     |     8/B |     5/B |     6/B |       0 |     2/E
+   E     |    10/D |     7/D |     8/D |     2/D |       0
+(formato: custo/próximo salto)
+ 
+--- Após rodada 4 ---
+Roteador |       A |       B |       C |       D |       E
+   A     |       0 |     3/C |     2/C |     8/C |    10/C
+   B     |     3/C |       0 |     1/C |     5/D |     7/D
+   C     |     2/A |     1/B |       0 |     6/B |     8/B
+   D     |     8/B |     5/B |     6/B |       0 |     2/E
+   E     |    10/D |     7/D |     8/D |     2/D |       0
+(formato: custo/próximo salto)
+ 
+Convergiu: nenhuma alteração na rodada 4.
+ 
+=== RESULTADO FINAL: melhores caminhos de cada roteador ===
+  A -> B: custo  3 | caminho: A -> C -> B
+  A -> C: custo  2 | caminho: A -> C
+  A -> D: custo  8 | caminho: A -> C -> B -> D
+  A -> E: custo 10 | caminho: A -> C -> B -> D -> E
+  B -> A: custo  3 | caminho: B -> C -> A
+  B -> C: custo  1 | caminho: B -> C
+  B -> D: custo  5 | caminho: B -> D
+  B -> E: custo  7 | caminho: B -> D -> E
+  C -> A: custo  2 | caminho: C -> A
+  C -> B: custo  1 | caminho: C -> B
+  C -> D: custo  6 | caminho: C -> B -> D
+  C -> E: custo  8 | caminho: C -> B -> D -> E
+  D -> A: custo  8 | caminho: D -> B -> C -> A
+  D -> B: custo  5 | caminho: D -> B
+  D -> C: custo  6 | caminho: D -> B -> C
+  D -> E: custo  2 | caminho: D -> E
+  E -> A: custo 10 | caminho: E -> D -> B -> C -> A
+  E -> B: custo  7 | caminho: E -> D -> B
+  E -> C: custo  8 | caminho: E -> D -> B -> C
+  E -> D: custo  2 | caminho: E -> D
+ 
