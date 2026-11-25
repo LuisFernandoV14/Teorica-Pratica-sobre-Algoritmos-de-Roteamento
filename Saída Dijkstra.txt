@@ -1,0 +1,49 @@
+=== TOPOLOGIA E CUSTOS INICIAIS ===
+  A <-> B : custo 4
+  A <-> C : custo 2
+  B <-> C : custo 1
+  B <-> D : custo 5
+  C <-> D : custo 8
+  C <-> E : custo 10
+  D <-> E : custo 2
+ 
+Dijkstra a partir de A
+Passo | N'            D(B),p(B)   D(C),p(C)   D(D),p(D)   D(E),p(E)   
+0     | A             4,A         2,A         inf         inf         
+1     | AC            3,C         -           10,C        12,C        
+2     | ABC           -           -           8,B         12,C        
+3     | ABCD          -           -           -           10,D        
+4     | ABCDE         -           -           -           -           
+ 
+=== RESULTADO FINAL: tabela de roteamento de cada roteador ===
+ 
+Roteador A:
+  -> B: custo  3 | caminho: A -> C -> B
+  -> C: custo  2 | caminho: A -> C
+  -> D: custo  8 | caminho: A -> C -> B -> D
+  -> E: custo 10 | caminho: A -> C -> B -> D -> E
+ 
+Roteador B:
+  -> A: custo  3 | caminho: B -> C -> A
+  -> C: custo  1 | caminho: B -> C
+  -> D: custo  5 | caminho: B -> D
+  -> E: custo  7 | caminho: B -> D -> E
+ 
+Roteador C:
+  -> A: custo  2 | caminho: C -> A
+  -> B: custo  1 | caminho: C -> B
+  -> D: custo  6 | caminho: C -> B -> D
+  -> E: custo  8 | caminho: C -> B -> D -> E
+ 
+Roteador D:
+  -> A: custo  8 | caminho: D -> B -> C -> A
+  -> B: custo  5 | caminho: D -> B
+  -> C: custo  6 | caminho: D -> B -> C
+  -> E: custo  2 | caminho: D -> E
+ 
+Roteador E:
+  -> A: custo 10 | caminho: E -> D -> B -> C -> A
+  -> B: custo  7 | caminho: E -> D -> B
+  -> C: custo  8 | caminho: E -> D -> B -> C
+  -> D: custo  2 | caminho: E -> D
+ 
